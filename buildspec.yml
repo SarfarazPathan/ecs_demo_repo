@@ -4,13 +4,13 @@ phases:
   pre_build:
     commands:
       - echo Logging in to Amazon ECR...
-      - aws ecr get-login-password --region <your-region> | docker login --username AWS --password-stdin <your-account-id>.dkr.ecr.<your-region>.amazonaws.com
+      - aws ecr get-login-password --region ap-south-1 | docker login --username AWS --password-stdin 748820079515.dkr.ecr.ap-south-1.amazonaws.com
   build:
     commands:
       - echo Building the Docker image...
-      - docker build -t my-springboot-app .
-      - docker tag my-springboot-app:latest <your-account-id>.dkr.ecr.<your-region>.amazonaws.com/my-springboot-app:latest
+      - docker build -t ecs_demo_app .
+      - docker tag ecs_demo_app:latest 748820079515.dkr.ecr.ap-south-1.amazonaws.com/ecs_demo_app:latest
   post_build:
     commands:
       - echo Pushing the Docker image to ECR...
-      - docker push <your-account-id>.dkr.ecr.<your-region>.amazonaws.com/my-springboot-app:latest
+      - docker push 748820079515.dkr.ecr.ap-south-1.amazonaws.com/ecs_demo_app:latest
